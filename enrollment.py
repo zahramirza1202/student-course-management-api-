@@ -70,6 +70,29 @@ def enroll_student():
         cursor.close()
         conn.close()
         
-        
+ #GET /enrollment -> list all enrollment with student and course names
+@app.route('/enrollments',methods=['GET']) 
+def get_enrollments():
+    conn=get_db_connection()
+    cursor=conn.cursor(dictionary=True)
+    try:
+        cursor.execute( """
+         SELECT e.id AS enrollment_id,
+                s.id AS srudent_id, s.name AS student_name,
+                c.id AS course_id, c.title AS course_title
+        FROM enrollments e
+        JOIN students s ON e.student_id = s.id
+        JOIN courses c ON e.course_id = c.id
+         """ )
+        enrollments = cursor.fetchall()
+        return jsonify(enrollments), 200
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error":str(e)}), 500
+    finally:
+        cursor.close()
+        conn.close()
+    
 if __name__=="__main__":
     app.run(debug=True)
