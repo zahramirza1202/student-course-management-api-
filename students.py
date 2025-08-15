@@ -56,7 +56,7 @@ def add_student():
         new_id=cursor.lastrowid
         cursor.close()
         conn.close()
-        return jsonify ({"message": "Student added","id":new_id}), 201
+        return jsonify ({"message": "Student added","id":new_id}), 202
     except mysql.connector.IntegrityError:
         return jsonify({"error": "Email already exists"}), 400
 
