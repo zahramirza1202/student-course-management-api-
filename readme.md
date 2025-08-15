@@ -2,11 +2,6 @@
 This is my ongoing assignment for building a REST API using Python Flask and MySQL.
 
 ## Current Progress
-- Set up Flask application with blueprint structure
-- Implemented GET `/students` and GET `/students/<id>` endpoints
-- Added POST, PUT, and DELETE routes for students ✅
-
-## Current Progress
 - Structured Flask application using Blueprints for modular design
 • Students module:
 - GET /students – fetch all students
